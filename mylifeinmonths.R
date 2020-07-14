@@ -56,7 +56,7 @@ life_data2 <- life_data %>%
 # not sure how it automatically knows to row 12
 # I guess its picking up on there only being 12 levels
 
-chart <- life_data %>% 
+chart <- life_data2 %>% 
   ggplot(aes(x = year, y = month, fill = period)) + 
   geom_waffle() +
   coord_equal(clip = "off") +
