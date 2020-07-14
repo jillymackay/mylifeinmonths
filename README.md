@@ -5,6 +5,7 @@ Inspired by [sharlagelfand](https://github.com/sharlagelfand/mylifeinmonths) (in
 
 I couldn't get `waffle` to work, so I use `ggwaffle` instead! 
 
-I also don't have the patience for all those lovely annotations - but should really work something out since that legend is too small
+Those annotations and `extrafont` really are a pain in the arse. 
+
 
 <img src="life_in_months.png" width="7500" />
