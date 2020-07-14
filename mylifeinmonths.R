@@ -6,7 +6,7 @@ library(tidyverse)
 library(lubridate)
 library(ggwaffle)
 library(nord)
-library(extrafont)
+
 
 life_data <- expand_grid(
   m1 = month.name,
@@ -22,7 +22,8 @@ life_data <- expand_grid(
 
 
 
-life_data <- life_data %>% 
+
+life_data2 <- life_data %>% 
   rowwise() %>% 
   mutate(year_month = paste0(c(year, month_number), collapse ="_")) %>% 
   ungroup() %>% 
@@ -35,10 +36,17 @@ life_data <- life_data %>%
     year_month == "2009_6" ~ "Childcare Worker",
     year_month == "2010_1" ~ "PhD, Edinburgh Uni/SAC",
     year_month == "2013_5" ~ "Animal Behaviour Researcher, SAC",
+    year_month == "1993_7" ~ "Primary Schooling",
+    year_month == "1998_8" ~ "Secondary Schooling",
+    year_month == "2004_8" ~ "Glasgow Uni",
+    year_month == "2009_6" ~ "Childcare Worker",
+    year_month == "2010_1" ~ "PhD, Edinburgh Uni",
+    year_month == "2013_5" ~ "Lecturer, Scotland's Agricultural College",
     year_month == "2016_6" ~ "Education Researcher, Edinburgh Uni"
   )) %>% 
   fill(period) %>% 
   mutate(period = fct_inorder(period))
+
 
 
 
