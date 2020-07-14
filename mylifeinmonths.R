@@ -112,7 +112,7 @@ chart <-
   geom_curve(aes(x = 2015, xend = 2018, y = -0.8, yend = 0.5), curvature = 0.3, arrow = arrow(length = unit(0.03, "npc")), color ="#A8A890") +
   annotate("text", label = "My Life in Months", x = 2003, y = 18, size = 9, colour = "#486090", 
            family = "Bradley Hand ITC", fontface = "bold", fontface = "bold" ) +
-  annotate("text", label = "Each cell = 1 month, Each row = 1 Year", x = 2003, y = 16.5, size = 7, colour = "#486090", family = "Bradley Hand ITC") +
+  annotate("text", label = "Each cell = 1 month, Each col = 1 Year", x = 2003, y = 16.5, size = 7, colour = "#486090", family = "Bradley Hand ITC") +
   annotate("text", label = "https://github.com/jillymackay/mylifeinmonths", x = 2015, y = -3, size = 3, colour = "#486090", family = "Calibri Light" ) +
   annotate("text", label = "an ugly fix", x = 2003, y = 18.5, size = 3, colour = "#f0f0f0") 
 
