@@ -16,7 +16,7 @@ library(extrafont)
 
 life_data <- expand_grid(
   m1 = month.name,
-  year = 1986:2020) %>% 
+  year = 1986:2023) %>% 
   mutate(month = as_factor(m1),
          month = fct_relevel(m1, month.name)) %>% 
   arrange(year, month) %>%  
@@ -24,7 +24,7 @@ life_data <- expand_grid(
   mutate(month_number = row_number()) %>% 
   ungroup() %>% 
   filter(!(year == 1986 & month_number <6),
-         !(year == 2020 & month_number >7))
+         !(year == 2023 & month_number >3))
 
 
 
@@ -42,7 +42,9 @@ life_data2 <- life_data %>%
     year_month == "2009_6" ~ "Childcare Worker",
     year_month == "2010_1" ~ "PhD, Edinburgh Uni/SAC",
     year_month == "2013_5" ~ "Animal Behaviour Researcher, SAC",
-    year_month == "2016_6" ~ "Education Researcher, Edinburgh Uni"
+    year_month == "2016_6" ~ "Education Researcher, Edinburgh Uni",
+    year_month == "2022_1" ~ "Maternity Leave",
+    year_month == "2023_2" ~ "Senior Lecturer, Edinburgh Uni"
   )) %>% 
   fill(period) %>% 
   mutate(period = fct_inorder(period))
@@ -69,7 +71,9 @@ chart <-
                            period == "Childcare Worker" ~ emoji('children_crossing'),
                            period == "PhD, Edinburgh Uni/SAC" ~ emoji('cow'),
                            period == "Animal Behaviour Researcher, SAC" ~ emoji('mortar_board'),
-                           period == "Education Researcher, Edinburgh Uni" ~ emoji('woman'))) %>% 
+                           period == "Education Researcher, Edinburgh Uni" ~ emoji('woman'),
+                           period == "Maternity Leave" ~ emoji('family_man_woman_girl'),
+                           period == "Senior Lecturer, Edinburgh Uni" ~ emoji('woman_juggling'))) %>% 
   ggplot(aes(x = year, y = month)) + 
   geom_text(aes(label=label, color = period), family='EmojiOne', size=6) +
   coord_equal(clip = "off") +
