@@ -61,7 +61,7 @@ life_data2 <- life_data %>%
 # I go through EmojiOne fonts one by one to find the emoji I want
 # e.g. search_emoji('book')
 
-#chart <- 
+chart <- 
   life_data2 %>% 
   mutate(label = case_when(period == "Infant" ~ emoji('baby'),
                            period == "Toddler" ~ emoji('girl'),
@@ -105,13 +105,21 @@ life_data2 <- life_data %>%
   annotate("text", label = "PhD", x = 2012, y = -0.1, size = 6, colour = "#A8C0C0", 
            family = "Bradley Hand ITC", fontface = "bold" ) +
   geom_curve(aes(x = 2011.2, xend = 2010, y = -0.1, yend = 0.5), curvature = -0.2, arrow = arrow(length = unit(0.03, "npc")), color ="#A8C0C0") +
-  annotate("text", label = "Ethology Lecturer", x = 2016, y = 14, size = 6, colour = "#C0D8D8", 
+  annotate("text", label = "Lecturer (Ethology)", x = 2016, y = 14, size = 6, colour = "#C0D8D8", 
            family = "Bradley Hand ITC", fontface = "bold" ) +
   geom_curve(aes(x = 2018, xend = 2014, y = 13.3, yend = 12.2), curvature = -0.1, arrow = arrow(length = unit(0.03, "npc")), color ="#C0D8D8") +
-  annotate("text", label = "Maternity Leave", x = 2022, y = 13.1, size = 6, colour = "#A8A890", 
+    annotate("text", label = "Lecturer\n(Education Research)", x = 2019, y = -1.1, size = 6, colour = "#A8A890", 
+             family = "Bradley Hand ITC", fontface = "bold" ) +
+    geom_curve(aes(x = 2019, xend = 2020, y = 0, yend = 1), curvature = -0.3,
+               arrow = arrow(length = unit(0.03, "npc")), color ="#A8A890") +
+     annotate("text", label = "Maternity Leave", x = 2022, y = 13.1, size = 6, colour = "#A8A890", 
            family = "Bradley Hand ITC", fontface = "bold" ) +
   geom_curve(aes(x = 2023, xend = 2022, y = 13, yend = 12), curvature = -0.3,
              arrow = arrow(length = unit(0.03, "npc")), color ="#A8A890") +
+    annotate("text", label = "Back to work", x = 2023, y = 4.1, size = 6, colour = "#A8A890", 
+             family = "Bradley Hand ITC", fontface = "bold" ) +
+    geom_curve(aes(x = 2023, xend = 2023, y = 4, yend = 2), curvature = -0.3,
+               arrow = arrow(length = unit(0.03, "npc")), color ="#A8A890") +
   annotate("text", label = "My Life in Months", x = 2003, y = 18, size = 9, colour = "#486090", 
            family = "Bradley Hand ITC", fontface = "bold", fontface = "bold" ) +
   annotate("text", label = "Each cell = 1 month, Each col = 1 Year", x = 2003, y = 16.5, size = 7, colour = "#486090", family = "Bradley Hand ITC") +
@@ -125,7 +133,7 @@ life_data2 <- life_data %>%
 
 
 
-nggsave("life_in_months.png", plot = chart, device = "png", dpi = 300)
+ggsave("life_in_months.png", plot = chart, device = "png", dpi = 300)
 
 
 
