@@ -34,8 +34,8 @@ life_data2 <- life_data %>%
   mutate(year_month = paste0(c(year, month_number), collapse ="_")) %>% 
   ungroup() %>% 
   mutate(period = case_when(
-    year_month == "1986_6" ~ "Preverbal",
-    year_month == "1987_3" ~ "Young Child",
+    year_month == "1986_6" ~ "Infant",
+    year_month == "1987_6" ~ "Toddler",
     year_month == "1991_7" ~ "Primary Schooling",
     year_month == "1998_8" ~ "Secondary Schooling",
     year_month == "2004_8" ~ "Glasgow Uni",
@@ -63,16 +63,16 @@ life_data2 <- life_data %>%
 
 chart <- 
   life_data2 %>% 
-  mutate(label = case_when(period == "Preverbal" ~ emoji('baby'),
-                           period == "Young Child" ~ emoji('girl'),
-                           period == "Primary Schooling" ~ emoji('open_book'),
-                           period == "Secondary Schooling" ~ emoji('books'),
-                           period == "Glasgow Uni" ~ emoji('woman_student'),
+  mutate(label = case_when(period == "Infant" ~ emoji('baby'),
+                           period == "Toddler" ~ emoji('girl'),
+                           period == "Primary Schooling" ~ emoji('school'),
+                           period == "Secondary Schooling" ~ emoji('open_book'),
+                           period == "Glasgow Uni" ~ emoji('mortar_board'),
                            period == "Childcare Worker" ~ emoji('children_crossing'),
                            period == "PhD, Edinburgh Uni/SAC" ~ emoji('cow'),
-                           period == "Animal Behaviour Researcher, SAC" ~ emoji('mortar_board'),
+                           period == "Animal Behaviour Researcher, SAC" ~ emoji('cow2'),
                            period == "Education Researcher, Edinburgh Uni" ~ emoji('woman'),
-                           period == "Maternity Leave" ~ emoji('family_man_woman_girl'),
+                           period == "Maternity Leave" ~ emoji('baby'),
                            period == "Senior Lecturer, Edinburgh Uni" ~ emoji('woman_juggling'))) %>% 
   ggplot(aes(x = year, y = month)) + 
   geom_text(aes(label=label, color = period), family='EmojiOne', size=6) +
