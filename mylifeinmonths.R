@@ -16,23 +16,23 @@ library(extrafont)
 
 life_data <- expand_grid(
   m1 = month.name,
-  year = 1986:2023) %>% 
+  year = 1986:2024) |> 
   mutate(month = as_factor(m1),
-         month = fct_relevel(m1, month.name)) %>% 
-  arrange(year, month) %>%  
-  group_by(year) %>% 
-  mutate(month_number = row_number()) %>% 
-  ungroup() %>% 
+         month = fct_relevel(m1, month.name)) |>  
+  arrange(year, month) |>  
+  group_by(year) |> 
+  mutate(month_number = row_number()) |>  
+  ungroup() |> 
   filter(!(year == 1986 & month_number <6),
-         !(year == 2023 & month_number >3))
+         !(year == 2024 & month_number >10))
 
 
 
 
-life_data2 <- life_data %>% 
-  rowwise() %>% 
-  mutate(year_month = paste0(c(year, month_number), collapse ="_")) %>% 
-  ungroup() %>% 
+life_data2 <- life_data |> 
+  rowwise() |> 
+  mutate(year_month = paste0(c(year, month_number), collapse ="_")) |> 
+  ungroup() |> 
   mutate(period = case_when(
     year_month == "1986_6" ~ "Infant",
     year_month == "1987_6" ~ "Toddler",
@@ -44,9 +44,10 @@ life_data2 <- life_data %>%
     year_month == "2013_5" ~ "Animal Behaviour Researcher, SAC",
     year_month == "2016_6" ~ "Education Researcher, Edinburgh Uni",
     year_month == "2022_1" ~ "Maternity Leave",
-    year_month == "2023_2" ~ "Senior Lecturer, Edinburgh Uni"
-  )) %>% 
-  fill(period) %>% 
+    year_month == "2023_2" ~ "Senior Lecturer, Edinburgh Uni",
+    year_month == "2024_10" ~ "Maternity Leave"
+  )) |> 
+  fill(period) |> 
   mutate(period = fct_inorder(period))
 
 
@@ -62,7 +63,7 @@ life_data2 <- life_data %>%
 # e.g. search_emoji('book')
 
 chart <- 
-  life_data2 %>% 
+  life_data2 |> 
   mutate(label = case_when(period == "Infant" ~ emoji('baby'),
                            period == "Toddler" ~ emoji('girl'),
                            period == "Primary Schooling" ~ emoji('school'),
@@ -128,7 +129,7 @@ chart <-
 
 
 
-
+chart
 
 
 
