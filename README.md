@@ -9,3 +9,10 @@ Those annotations and `extrafont` really are a pain in the arse.
 
 
 <img src="life_in_months.png" width="7500" />
+
+
+
+
+# If you're here from Fibre Arts and Reproducibility
+
+<img src="fibre.png" width="7500" />
