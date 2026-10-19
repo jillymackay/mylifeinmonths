@@ -144,7 +144,7 @@ life_data |>
 
 
 
-ggsave("life_in_months.png", plot = chart, device = "png", dpi = 300)
+ggsave("life_in_months.png", device = "png", dpi = 300)
 
 
 
