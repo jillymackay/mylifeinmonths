@@ -16,7 +16,7 @@ library(extrafont)
 
 life_data <- expand_grid(
   m1 = month.name,
-  year = 1986:2024) |> 
+  year = 1986:2026) |> 
   mutate(month = as_factor(m1),
          month = fct_relevel(m1, month.name)) |>  
   arrange(year, month) |>  
@@ -24,7 +24,7 @@ life_data <- expand_grid(
   mutate(month_number = row_number()) |>  
   ungroup() |> 
   filter(!(year == 1986 & month_number <6),
-         !(year == 2024 & month_number >10))  |> 
+         !(year == 2026 & month_number >11))  |> 
   rowwise() |> 
   mutate(year_month = paste0(c(year, month_number), collapse ="_")) |> 
   ungroup() |> 
@@ -40,7 +40,8 @@ life_data <- expand_grid(
     year_month == "2016_6" ~ "Education Researcher, Edinburgh Uni",
     year_month == "2022_1" ~ "Maternity Leave",
     year_month == "2023_2" ~ "Senior Lecturer, Edinburgh Uni",
-    year_month == "2024_10" ~ "Maternity Leave"
+    year_month == "2024_10" ~ "Maternity Leave",
+    year_month == "2025_10" ~ "Senior Lecturer, Edinburgh Uni"
   )) |> 
   fill(period) |> 
   mutate(period = fct_inorder(period))
@@ -62,7 +63,7 @@ life_data <- expand_grid(
 
 life_data |> 
   mutate(label = case_when(period == "Infant" ~ emoji('baby_symbol'),
-                           period == "Toddler" ~ emoji('girl'),
+                           period == "Toddler" ~ emoji('child'),
                            period == "Primary Schooling" ~ emoji('school'),
                            period == "Secondary Schooling" ~ emoji('open_book'),
                            period == "Glasgow Uni" ~ emoji('mortar_board'),
@@ -71,11 +72,11 @@ life_data |>
                            period == "Animal Behaviour Researcher, SAC" ~ emoji('cow2'),
                            period == "Education Researcher, Edinburgh Uni" ~ emoji('woman'),
                            period == "Maternity Leave" ~ emoji('baby'),
-                           period == "Senior Lecturer, Edinburgh Uni" ~ emoji('woman_juggling'))) %>% 
+                           period == "Senior Lecturer, Edinburgh Uni" ~ emoji('woman'))) %>% 
   ggplot(aes(x = year, y = month)) + 
-  geom_text(aes(label=label, color = period), family='EmojiOne', size=8) +
+  geom_text(aes(label=label, color = period), family="OpenMoji", size=8) +
   coord_equal(clip = "off") +
-  scale_color_nord(palette = "victory_bonds") +
+  scale_color_nord(palette = "moose_pond") +
   theme_waffle() +
   theme(plot.background = element_rect(fill = "#f0f0f0", color = "#f0f0f0"),
         legend.position = "none") +
